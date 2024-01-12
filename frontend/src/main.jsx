@@ -12,7 +12,7 @@ if (import.meta.env.MODE !== "production") {
   restoreCSRF();
   window.store = store;
   window.csrfFetch = csrfFetch;
-  console.log("Store attached to window:", window.store); // Add this line
+  console.log("Store attached to window:", window.store); 
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(
