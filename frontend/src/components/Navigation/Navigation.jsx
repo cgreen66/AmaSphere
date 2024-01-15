@@ -14,7 +14,7 @@ function Navigation() {
   } else {
     sessionLinks = (
       <div className="nav-dropdown">
-        <button className="dropdown-btn">Account</button>
+        <button className="dropdown-btn">Hello, sign in</button>
         <div className="dropdown-content">
           <NavLink to="/signup">Create Account</NavLink>
           <NavLink to="/login">Sign In</NavLink>
