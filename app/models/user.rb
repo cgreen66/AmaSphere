@@ -12,11 +12,13 @@ class User < ApplicationRecord
   
   before_validation :ensure_session_token
 
-  def self.find_by_credentials(credential, password)
-    field = credential =~ URI::MailTo::EMAIL_REGEXP ? :email :
-    user = User.find_by(field => credential)
-    user&.authenticate(password)
+  def self.find_by_credentials(email, password)
+    user = User.find_by(email: email)
+    return nil unless user
+    return user if user.authenticate(password)
+    nil
   end
+  
 
   def reset_session_token!
     self.update!(session_token: generate_unique_session_token)

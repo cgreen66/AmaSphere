@@ -1,0 +1,142 @@
+/* LoginForm.module.css */
+
+.loginContainer {
+  width: 100%;
+  max-width: 350px;
+  margin: 2rem auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.loginPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #fff;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.formTitle {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.inputContainer {
+  margin-bottom: 14px;
+}
+
+.label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #a6a6a6;
+  border-radius: 4px;
+}
+
+.input:focus {
+  border-color: #e77600;
+  box-shadow: 0 0 3px 2px rgba(228, 121, 17, 0.5);
+  outline: none;
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  background-color: #f0c14b;
+  border-color: #a88734 #9c7e31 #846a29;
+  color: #111;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.errorList {
+  color: #b00020;
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.errorItem {
+  margin-bottom: 10px;
+}
+
+.footerText,
+.footerLogin {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footerText a,
+.footerLogin a {
+  color: #0066c0;
+  text-decoration: none;
+}
+
+.footerText a:hover,
+.footerLogin a:hover {
+  text-decoration: underline;
+}
+
+.amazonLogo {
+  margin-bottom: 20px;
+  height: auto;
+  width: 120px;
+}
+
+.form {
+  margin-top: 0;
+  padding: 20px;
+}
+
+.form label,
+.form input {
+  width: calc(100% - 2 * 10px);
+}
+
+.helpText {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.workText {
+  font-size: 12px; 
+  text-align: center;
+  margin-top: 5px; 
+}
+
+.newText {
+  font-size: 12px; 
+  text-align: center;
+  margin-top: 5px;
+}
+
+.agreementText {
+  font-size: 12px; 
+  text-align: center;
+  margin-top: 5px; 
+}

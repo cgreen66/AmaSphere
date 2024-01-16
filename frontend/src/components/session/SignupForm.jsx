@@ -16,22 +16,35 @@ function SignupForm() {
 
   if (sessionUser) return <Navigate to="/" replace={true}/>;
 
+  const handleDemoLogin = (e) => {
+    e.preventDefault();
+    const demoUser = { email: 'demo@user.io', password: 'password' };
+    dispatch(sessionActions.login(demoUser))
+      .catch(async (res) => {
+        let data;
+        try {
+          data = await res.json();
+        } catch {
+          data = { errors: [await res.text()] }; 
+        }
+        setErrors(data.errors || [res.statusText]);
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(sessionActions.signup({ name, email, password }))
-        .catch(async (res) => {
-          let data;
-          try {
-            data = await res.clone().json();
-          } catch {
-            data = await res.text(); 
-          }
-          if (data?.errors) setErrors(data.errors);
-          else if (data) setErrors([data]);
-          else setErrors([res.statusText]);
-        });
+      .catch(async (res) => {
+        let data;
+        try {
+          data = await res.json();
+        } catch {
+          data = { errors: [await res.text()] }; 
+        }
+        setErrors(data.errors || [res.statusText]);
+      });
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
@@ -94,6 +107,9 @@ function SignupForm() {
           />
         </div>
         <button type="submit" className={styles.button}>Continue</button>
+        <button type="button" className={styles.button} onClick={handleDemoLogin}>
+    Demo Login
+  </button>
         <p className={styles.footerText}>
           By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.
         </p>
