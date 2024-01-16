@@ -13,7 +13,9 @@
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    width: 100%; /* Make the container take up the full width */
   }
   
   .nav-logo {
@@ -21,37 +23,39 @@
     text-decoration: none;
     font-size: 24px;
     font-weight: bold;
+    margin-right: auto; /* Push the logo all the way to the left */
   }
   
   .nav-search {
     display: flex;
     align-items: center;
+    justify-content: center; /* Center horizontally */
+    flex-grow: 1;
   }
   
   .search-input {
     padding: 8px;
-    margin-right: 10px;
     border: none;
     border-radius: 4px;
     font-size: 16px;
-    width: 250px; 
+    max-width: 250px;
   }
   
   .search-button {
-    background-color: #ff9900; 
+    background-color: #ff9900;
     color: #ffffff;
     border: none;
     border-radius: 4px;
     padding: 8px 16px;
     cursor: pointer;
     font-size: 16px;
+    margin-left: 10px; /* Add this to create spacing between search bar and button */
   }
   
   .search-button:hover {
-    background-color: #ff6600; 
+    background-color: #ff6600;
   }
   
-
   .nav-account {
     display: flex;
     align-items: center;
@@ -67,7 +71,7 @@
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
   }
   
@@ -86,7 +90,6 @@
     background-color: #ddd;
   }
   
-
   .cart-button {
     text-decoration: none;
     color: #ffffff;
@@ -118,7 +121,7 @@
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     right: 0;
   }
@@ -137,5 +140,4 @@
   .dropdown-content a:hover {
     background-color: #ddd;
   }
-  
   

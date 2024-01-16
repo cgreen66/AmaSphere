@@ -5,10 +5,12 @@ import LoginForm from './components/session/LoginForm';
 import SignupForm from './components/session/SignupForm';
 import Navigation from './components/Navigation';
 import * as sessionActions from './store/session';
+import { useLocation } from 'react-router-dom';
 
 function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const location = useLocation(); 
 
   useEffect(() => {
     dispatch(sessionActions.restoreSession()).then(() => {
@@ -16,9 +18,11 @@ function Layout() {
     });
   }, [dispatch]);
 
+  const showNavigation = location.pathname === '/';
+
   return (
     <>
-      <Navigation />
+      {showNavigation && <Navigation />}
       {isLoaded && <Outlet />}
     </>
   );

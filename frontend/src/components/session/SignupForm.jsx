@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
+import styles from './SignupForm.module.css';
+import amazonLogo from '/Users/christopher/AmaSphere/amazonlogo.png'
 
 function SignupForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -18,69 +20,91 @@ function SignupForm() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
+      return dispatch(sessionActions.signup({ name, email, password }))
         .catch(async (res) => {
-        let data;
-        try {
-          data = await res.clone().json();
-        } catch {
-          data = await res.text(); 
-        }
-        if (data?.errors) setErrors(data.errors);
-        else if (data) setErrors([data]);
-        else setErrors([res.statusText]);
-      });
+          let data;
+          try {
+            data = await res.clone().json();
+          } catch {
+            data = await res.text(); 
+          }
+          if (data?.errors) setErrors(data.errors);
+          else if (data) setErrors([data]);
+          else setErrors([res.statusText]);
+        });
     }
     return setErrors(['Confirm Password field must be the same as the Password field']);
   };
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error) => <li key={error}>{error}</li>)}
+    <div className={styles.signupPageContainer}>
+      <Link to="/"> 
+        <img src={amazonLogo} alt="Amazon Logo" className={styles.amazonLogo} />
+      </Link>
+      <div className={styles.formContainer}>
+        <form onSubmit={handleSubmit} className={styles.form}>
+        
+        <h2 className={styles.formTitle}>Create account</h2>
+        <ul className={styles.errorList}>
+          
+          {errors.map((error) => <li key={error} className={styles.errorItem}>{error}</li>)}
+          
         </ul>
-        <label>
-          Email
+        
+        <div className={styles.inputContainer}>
+          <label className={styles.label}>Your name</label>
           <input
             type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="First and last name"
+            required
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.inputContainer}>
+          <label className={styles.label}>Email</label>
+          <input
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            className={styles.input}
           />
-        </label>
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
+        </div>
+        <div className={styles.inputContainer}>
+          <label className={styles.label}>Password</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="At least 6 characters"
             required
+            className={styles.input}
           />
-        </label>
-        <label>
-          Confirm Password
+        </div>
+        <div className={styles.inputContainer}>
+          <label className={styles.label}>Re-enter password</label>
           <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            className={styles.input}
           />
-        </label>
-        <button type="submit">Sign Up</button>
-      </form>
-    </>
-  );
+        </div>
+        <button type="submit" className={styles.button}>Continue</button>
+        <p className={styles.footerText}>
+          By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.
+        </p>
+        <p className={styles.footerLogin}>
+          Already have an account? <a href="/login">Sign in</a> | <
+a href="#">Buying for work? Create a free business account</a>
+</p>
+</form>
+</div>
+</div>
+);
 }
 
 export default SignupForm;
