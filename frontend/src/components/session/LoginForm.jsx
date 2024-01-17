@@ -1,11 +1,11 @@
 // LoginForm.js
-
 import { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Link } from 'react-router-dom';
 import styles from './LoginForm.module.css'; 
 import amazonLogo from '/Users/christopher/AmaSphere/amazonlogo.png'; 
+import AuthFooter from '../Navigation/AuthFooter';
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -42,39 +42,47 @@ function LoginForm() {
         <h1 className={styles.formTitle}>Sign In</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
           <ul className={styles.errorList}>
-            {errors.map((error) => <li key={error} className={styles.errorItem}>{error}</li>)}
+            {errors.map((error) => <li key={error}>{error}</li>)}
           </ul>
-          <label className={styles.label}>
-            Email
-            <input
-              type="text"
-              value={credential}
-              onChange={(e) => setCredential(e.target.value)}
-              required
-              className={styles.input}
-            />
-          </label>
-          <label className={styles.label}>
-            Password
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className={styles.input}
-            />
-          </label>
-          <button type="submit" className={styles.button}>Log In</button>
+          <div className={styles.inputContainer}>
+            <label className={styles.label}>
+              Email
+              <input
+                type="text"
+                value={credential}
+                onChange={(e) => setCredential(e.target.value)}
+                required
+                className={styles.input}
+              />
+            </label>
+          </div>
+          <div className={styles.inputContainer}>
+            <label className={styles.label}>
+              Password
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className={styles.input}
+              />
+            </label>
+          </div>
+          <button type="submit" className={styles.continueButton}>Continue</button>
           <p className={styles.footerText}>
             By continuing, you agree to Amazon's Conditions of Use and Privacy Notice.
           </p>
-          <p className={styles.footerLogin}>
-            Need help? <a href="/help">Visit the help center</a> | 
-            Buying for work? <a href="/business">Shop on Amazon Business</a> | 
-            New to Amazon? <a href="/signup">Create your Amazon account</a>
-          </p>
         </form>
+        </div>
+      <div className={styles.separator}>
+        <hr className={styles.line} />
+        <div className={styles.newLineText}>New to Amazon?</div>
+        <hr className={styles.line} />
       </div>
+      <Link to="/signup" className={styles.createAccountLink}>
+        <button className={styles.createAccountButton}>Create your Amazon account</button>
+      </Link>
+      <AuthFooter/>
     </div>
   );
 }

@@ -1,3 +1,9 @@
+@import url('https://fonts.cdnfonts.com/css/amazon-ember');
+
 .profile-dropdown {
   position: absolute;
+}
+
+body {
+  font-family: 'Amazon Ember', sans-serif;
 }

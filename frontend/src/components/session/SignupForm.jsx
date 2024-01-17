@@ -4,6 +4,7 @@ import { Link, Navigate } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 import styles from './SignupForm.module.css';
 import amazonLogo from '/Users/christopher/AmaSphere/amazonlogo.png'
+import AuthFooter from '../Navigation/AuthFooter';
 
 function SignupForm() {
   const dispatch = useDispatch();
@@ -119,6 +120,7 @@ a href="#">Buying for work? Create a free business account</a>
 </p>
 </form>
 </div>
+<AuthFooter/>
 </div>
 );
 }

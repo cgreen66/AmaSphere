@@ -1,0 +1,194 @@
+
+  .header-prime {
+    color: white;
+    padding: 0 10px;
+    font-weight: bold;
+    text-shadow: 0px 1px 1px black;
+  }
+  
+  .header-prime:hover {
+    color: #e7ba00; 
+  }
+  
+  .header-option:hover, .header-prime:hover {
+    text-decoration: underline;
+    color: #e7ba00;
+  }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #131921;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 10px;
+    height: 60px;
+}
+
+.header-logo {
+    color: #FF9900; /* Amazon's logo color */
+}
+
+.searchBar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.inputSearch {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+}
+
+.searchButton {
+    padding: 10px;
+    background-color: #febd69;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+}
+
+.header-option {
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.header-optionLineOne, .header-optionLineTwo {
+    color: white;
+    margin-bottom: 2px;
+  }
+
+  .header-optionLineOne {
+    font-size: 14px;
+    font-weight: normal;
+  }
+  
+  .header-optionLineTwo {
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+.header-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    z-index: 1;
+    width: 350px; 
+    text-align: center;
+  }
+  
+  .header-option:hover .header-dropdown,
+  .header-option:focus-within .header-dropdown {
+    display: block;
+  }
+  
+  .header-dropdown-btn {
+    display: inline-block;
+    padding: 8px 16px; 
+    background-color: #f0c14b;
+    border: 1px solid #a88734; 
+    border-radius: 2px; 
+    color: #111;
+    font-size: 13px; 
+    font-weight: 400;
+    line-height: 1.255;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 1px 1px rgba(0,0,0,.1); 
+    -webkit-font-smoothing: antialiased; 
+    margin: 0 auto; 
+  }
+  
+  .header-dropdown-btn:hover {
+    background-color: #e7ba00; 
+    border-color: #a88734 #9c7e31 #846a29;
+    box-shadow: 0 1px 0 rgba(255,255,255,.4) inset, 0 1px 2px rgba(0,0,0,.15);
+  }
+  
+  .header-dropdown-new {
+    display: block;
+    color: #0066c0;
+    font-size: 12px;
+    text-decoration: none;
+    margin: 16px auto;
+  }
+  
+  .header-dropdown-new:hover {
+    text-decoration: underline;
+  }
+  
+
+  
+
+.header-cart {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.header-cartCount {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #f08804;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .searchBar {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .header-nav {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .header-option {
+        align-items: flex-start;
+    }
+
+    .header-cart {
+        margin-top: 10px;
+    }
+    .header-prime {
+        display: none; 
+}
+
+.searchDropdown {
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    margin-right: -1px; 
+}
+
