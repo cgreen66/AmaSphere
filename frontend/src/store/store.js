@@ -1,23 +1,29 @@
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import session from './session';
+import { createLogger } from 'redux-logger';
+import sessionReducer from './session';
+import productsReducer from './productSlice';
 
-const rootReducer = combineReducers({
-  session
+const logger = createLogger({
+  collapsed: true,
+  duration: true,
 });
 
-let enhancer;
-if (import.meta.env.MODE === "production") {
-  enhancer = applyMiddleware(thunk);
-} else {
-  const logger = (await import("redux-logger")).default;
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  enhancer = composeEnhancers(applyMiddleware(thunk, logger));
-}
+const configureAppStore = (preloadedState) => {
+  const middleware = [thunk];
 
-const configureStore = (preloadedState) => {
-  return createStore(rootReducer, preloadedState, enhancer);
+  if (import.meta.env.MODE !== 'production') {
+    middleware.push(logger);
+  }
+
+  return configureStore({
+    reducer: {
+      session: sessionReducer,
+      products: productsReducer,
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware),
+    preloadedState,
+  });
 };
 
-export default configureStore;
+export default configureAppStore;

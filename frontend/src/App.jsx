@@ -4,6 +4,8 @@ import { RouterProvider, createBrowserRouter, Outlet, useLocation } from 'react-
 import LoginForm from './components/session/LoginForm';
 import SignupForm from './components/session/SignupForm';
 import Header from './components/Navigation/header';
+import ProductList from './components/ProductList';
+import ProductDetail from './components/ProductDetail'; // Import the ProductDetail component
 import * as sessionActions from './store/session';
 
 function Layout() {
@@ -25,11 +27,12 @@ function Layout() {
 
 const router = createBrowserRouter([
   {
+    path: '/',
     element: <Layout />,
     children: [
       {
-        path: '/',
-        element: <h1>Home Page</h1> 
+        index: true,
+        element: <h1>Home Page</h1>
       },
       {
         path: 'login',
@@ -39,8 +42,17 @@ const router = createBrowserRouter([
         path: 'signup',
         element: <SignupForm />
       },
-    ]
-  }
+      {
+        path: 'products',
+        element: <ProductList />
+      },
+      {
+        path: 'products/:productId', 
+        element: <ProductDetail />
+      },
+  
+    ],
+  },
 ]);
 
 const App = () => {
