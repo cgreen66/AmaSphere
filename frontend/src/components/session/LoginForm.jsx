@@ -4,7 +4,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Link } from 'react-router-dom';
 import styles from './LoginForm.module.css'; 
-import amazonLogo from '/Users/christopher/AmaSphere/amazonlogo.png'; 
+import amazonLogo from '/Users/christopher/AmaSphere/amazonlogo.png'
 import AuthFooter from '../Navigation/AuthFooter';
 
 function LoginForm() {
@@ -21,12 +21,7 @@ function LoginForm() {
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password }))
       .catch(async (res) => {
-        let data;
-        try {
-          data = await res.clone().json();
-        } catch {
-          data = await res.text();
-        }
+        const data = res.json ? await res.json() : await res.text();
         if (data?.errors) setErrors(data.errors);
         else if (data) setErrors([data]);
         else setErrors([res.statusText]);
@@ -46,7 +41,7 @@ function LoginForm() {
           </ul>
           <div className={styles.inputContainer}>
             <label className={styles.label}>
-              Email
+              Email or mobile phone number
               <input
                 type="text"
                 value={credential}
@@ -74,15 +69,17 @@ function LoginForm() {
           </p>
         </form>
         </div>
-      <div className={styles.separator}>
-        <hr className={styles.line} />
-        <div className={styles.newLineText}>New to Amazon?</div>
-        <hr className={styles.line} />
+      <div className={styles.newToAmazonContainer}>
+        <div className={styles.separator}>
+          <hr className={styles.line} />
+          <div className={styles.newLineText}>New to Amazon?</div>
+          <hr className={styles.line} />
+        </div>
+        <Link to="/signup" className={styles.createAccountLink}>
+          <button className={styles.createAccountButton}>Create your Amazon account</button>
+        </Link>
       </div>
-      <Link to="/signup" className={styles.createAccountLink}>
-        <button className={styles.createAccountButton}>Create your Amazon account</button>
-      </Link>
-      <AuthFooter/>
+      <AuthFooter />
     </div>
   );
 }

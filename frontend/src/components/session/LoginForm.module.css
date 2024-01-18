@@ -2,47 +2,49 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background-color: #fff;
+  justify-content: flex-start; 
+  min-height: 90vh;
+  padding-top: 0vh;
+  background-color: #fafafa;
 }
 
 .loginContainer {
-  width: 348px; 
-  padding: 20px 24px;
+  width: 300px;
+  padding: 12px 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
   background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,.2);
-  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.13);
+  margin-bottom: 4px; 
 }
-
 .amazonLogo {
   width: 100px; 
-  margin-bottom: 24px;
+  margin-top: 0;
+  margin-bottom: 16px;
 }
 
 .formTitle {
-  font-size: 24px; 
+  font-size: 28px; 
   color: #000;
   font-weight: 400;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .form {
   width: 100%;
+  text-align: left; 
 }
 
 .errorList {
   list-style-type: none;
   padding: 0;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .errorItem {
   color: #b00020;
-  font-size: 12px; 
-  margin-bottom: 10px;
+  font-size: 13px; 
+  margin-bottom: 8px;
 }
 
 .label {
@@ -50,23 +52,28 @@
   font-size: 13px;
   font-weight: 700;
   color: #111;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .input {
   width: 100%;
-  height: 31px;
-  padding: 3px 7px;
-  font-size: 13px;
+  height: 29px; 
+  padding: 2px 6px;
+  font-size: 13px; 
   border: 1px solid #a6a6a6;
   border-radius: 3px;
-  margin-bottom: 14px;
+  margin-bottom: 10px; 
 }
 
 .input:focus {
   border-color: #e77600;
-  box-shadow: 0 0 3px 2px rgba(228,121,17,.5);
+  box-shadow: 0 0 3px 2px rgba(228,121,17,0.5);
   outline: none;
+}
+
+.input,
+.continueButton {
+  box-sizing: border-box; 
 }
 
 .continueButton {
@@ -77,9 +84,10 @@
   border-style: solid;
   border-width: 1px;
   color: #111;
-  height: 29px;
-  margin-bottom: 20px;
+  height: 31px; 
+  margin-bottom: 16px;
   cursor: pointer;
+  font-size: 13px; 
 }
 
 .continueButton:hover {
@@ -89,7 +97,7 @@
 .footerText {
   font-size: 12px;
   color: #555;
-  margin-top: 20px; 
+  margin-top: 16px;
   text-align: center;
 }
 
@@ -97,33 +105,44 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  margin-top: 20px;
+  width: 300px; 
+  margin: 4px 0;
 }
 
 .line {
   flex-grow: 1;
+  background-color: #ddd; 
   height: 1px;
-  background-color: #ddd;
-  margin: 0 10px;
+  max-width: 50px; 
 }
 
 .newLineText {
-  padding: 0 5px;
-  background-color: #fff;
+  font-size: 12px;
   color: #767676;
-  font-size: 12px; 
+  margin: 0 10px; 
+  flex-shrink: 0; 
+}
+
+.newToAmazonContainer {
+  width: 300px; 
+  margin-top: -8px; 
+}
+
+.newToAmazonContainer {
+  width: 300px;
+  margin-top: -4px; 
 }
 
 .createAccountButton {
-  width: 348px; 
+  width: 300px; 
   background-color: #f7f8fa;
   color: #0f1111;
   padding: 10px;
-  margin-top: 10px;
   border: 1px solid #adb1b8;
   border-radius: 3px;
   cursor: pointer;
+  font-size: 13px;
+  margin-bottom: 8px; 
 }
 
 .createAccountButton:hover {
