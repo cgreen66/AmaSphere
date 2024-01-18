@@ -66,3 +66,41 @@
     text-decoration: none; 
     color: inherit; 
   }
+
+  .product-detail-reviews {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    margin-top: 10px;
+    width: 100%; 
+}
+
+.product-detail-rating, .product-review-count {
+    margin-right: 8px; 
+}
+  
+  .product-review-stars {
+    color: #ffc107; 
+    margin-right: 8px;
+  }
+  
+  .product-review-rating {
+    font-size: 0.875rem;
+    color: #333;
+  }
+
+  .add-to-cart-button {
+    background-color: #ff9900;
+    color: #000;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+    background-color: #e68a00; 
+}
