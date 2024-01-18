@@ -8,6 +8,5 @@ Rails.application.routes.draw do
     resource :session, only: [:show, :create, :destroy]
   end
 
-  # Catch-all route to serve up frontend files
   get '*path', to: "static_pages#frontend_index"
 end
