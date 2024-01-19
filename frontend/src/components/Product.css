@@ -1,106 +1,87 @@
 .product {
     display: flex;
     flex-direction: column;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid #e7e7e7; /* Lighter border color */
+    border-radius: 4px;
     overflow: hidden;
     background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
   }
   
+  .product .product-details .product-detail-reviews {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Ensure alignment to the left */
+    margin: 0; /* Reset any default margins that may be applied */
+    padding: 0; /* Reset any default padding that may be applied */
+    width: 100%; /* Ensure the container spans the full width of its parent */
+  }
+  
+  .product .product-details .product-detail-reviews .product-detail-rating,
+  .product .product-details .product-detail-reviews .product-review-count {
+    margin-right: 4px; /* Consistent spacing */
+    text-align: left; /* Explicitly align text to the left */
+  }
+
   .product:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .product-image {
-    width: 100%;
-    display: block;
-    position: relative;
+    transform: scale(1.02); /* Subtle scale effect on hover */
   }
   
   .product-image img {
     width: 100%;
-    display: block;
+    height: auto;
+    object-fit: contain;
+    padding: 16px; /* Match Amazon's padding around images */
   }
   
   .product-details {
-    padding: 0.75rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
+    padding: 16px; /* Consistent padding with image */
   }
   
   .product-title {
     font-size: 1rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 0.5rem;
+    font-weight: 700; /* Bolder font weight */
+    color: #111; /* Darker text to match Amazon's */
+    margin-bottom: 4px; /* Reduced margin */
   }
   
-  .product-description {
-    font-size: 0.875rem;
-    color: #555;
-    margin-bottom: 0.75rem;
-  }
-  
-  .product-price {
-    font-size: 1rem;
-    color: #B12704;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-  
-  .product-rating {
-    /* Placeholder for rating component */
-  }
-  
-  .product-meta {
-    font-size: 0.75rem;
-    color: #767676;
-    margin-top: 0.5rem;
-  }
-  
-  .product-link {
-    text-decoration: none; 
-    color: inherit; 
-  }
-
   .product-detail-reviews {
     display: flex;
     align-items: center;
-    justify-content: flex-start; 
-    margin-top: 10px;
-    width: 100%; 
-}
-
-.product-detail-rating, .product-review-count {
-    margin-right: 8px; 
-}
-  
-  .product-review-stars {
-    color: #ffc107; 
-    margin-right: 8px;
+    justify-content: flex-start; /* Align items to the left */
+    font-size: 0.85rem; /* Adjust font size if necessary */
+    margin-top: 4px; /* Adjust margin for alignment */
   }
   
-  .product-review-rating {
-    font-size: 0.875rem;
-    color: #333;
+  .product-detail-rating {
+    color: #ffa41c; /* Star color */
+    margin-right: 4px; /* Space between stars and review count */
   }
-
+  
+  .product-review-count {
+    color: #555; /* Text color for the review count */
+  }
+  
+  .product-brand {
+    color: #565959; /* Subdued color for brand */
+    font-size: 0.9rem; /* Smaller font size for brand */
+    margin-bottom: 4px;
+  }
+  
+  .product-price {
+    font-size: 1.24rem; /* Adjusted font size to match Amazon's */
+    color: #B12704;
+    font-weight: 700;
+    margin-bottom: 8px; /* More space before the price */
+  }
+  
+  /* Hide the Add to Cart button */
   .add-to-cart-button {
-    background-color: #ff9900;
-    color: #000;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.add-to-cart-button:hover {
-    background-color: #e68a00; 
-}
+    display: none;
+  }
+  
+  .product-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  

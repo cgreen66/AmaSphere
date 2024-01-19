@@ -1,90 +1,149 @@
-.product-detail {
+.product-detail-container {
     display: flex;
-    flex-direction: column;
     max-width: 1200px;
     margin: auto;
-    padding: 20px;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    align-items: center; 
+    gap: 20px;
   }
   
-  .product-detail-image {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 0; 
-}
-
-.product-detail-image img {
-    max-width: 30%; 
-    height: auto;
-    margin-bottom: 10px;
-}
-  
-  .product-detail-info {
+  .thumbnail-carousel {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    align-items: center; 
-    text-align: center; 
+    margin-right: 20px;
   }
   
-  .product-detail-title {
+  .thumbnail-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .thumbnail-image:hover {
+    border-color: #e77600;
+  }
+  
+  .product-detail-main {
+    flex: 2;
+  }
+  
+  .product-main-image {
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+  }
+  
+  .product-detail-info {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-title {
     font-size: 24px;
     font-weight: bold;
-    margin: 10px 0;
+    margin-bottom: 0.5rem;
   }
   
-  .product-detail-description {
+  .product-rating {
+    color: #FFA41C;
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-description {
     font-size: 16px;
     color: #666;
-    line-height: 1.6;
-    margin: 10px 0;
+    margin-bottom: 1rem;
   }
   
-  .product-detail-meta, .product-detail-reviews {
-    font-size: 14px;
-    color: #333;
-    margin: 10px 0;
-    width: 100%; 
-    justify-content: center; 
+  .prime-logo {
+    width: 50px;
+    height: auto;
+    margin-bottom: 10px;
   }
   
-  .product-detail-price {
-    color: #B12704;
+  .delivery-date {
+    margin-bottom: 0.5rem;
+  }
+  
+  .product-price {
+    font-size: 18px;
     font-weight: bold;
-    font-size: 20px;
+    color: #B12704;
+    margin-bottom: 0.5rem;
   }
   
-  .product-detail-category, .product-detail-brand, .product-detail-dimensions, .product-detail-weight {
-    display: block;
-    margin-bottom: 5px;
+  .product-availability {
+    font-weight: bold;
+    color: #008000;
+    margin-bottom: 0.5rem;
   }
   
-  .product-review-stars {
-    color: #ffc107;
-    margin-right: 8px;
+  .quantity-label {
+    font-size: 14px;
+    margin-bottom: 0.25rem;
   }
   
-  .product-review-rating {
-    font-size: 0.875rem;
-    color: #333;
-  }
-  
-
-  .add-to-cart-button {
-    background-color: #ff9900;
-    color: #000;
-    border: none;
-    padding: 10px 15px;
+  .quantity-selector {
+    margin-bottom: 1rem;
+    padding: 4px 8px;
     border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .add-to-cart-button,
+  .buy-now-button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 20px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 10px;
     transition: background-color 0.3s ease;
-}
-
-.add-to-cart-button:hover {
-    background-color: #e68a00; 
-}
+    display: block;
+    width: 100%;
+  }
+  
+  .add-to-cart-button {
+    background-color: #ffd814;
+    color: #0F1111;
+    margin-bottom: 0.5rem;
+  }
+  
+  .add-to-cart-button:hover {
+    background-color: #f7ca00;
+  }
+  
+  .buy-now-button {
+    background-color: #fb641b;
+    color: #ffffff;
+  }
+  
+  .buy-now-button:hover {
+    background-color: #e47911;
+  }
+  
+  @media (max-width: 768px) {
+    .product-detail-container {
+      flex-direction: column;
+    }
+  
+    .product-detail-main,
+    .thumbnail-carousel,
+    .product-detail-info {
+      width: 100%;
+    }
+  
+    .product-main-image {
+      width: 100%;
+      height: auto;
+    }
+  
+    .thumbnail-carousel {
+      flex-direction: row;
+      overflow-x: auto;
+    }
+  }
+  
