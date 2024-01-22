@@ -5,8 +5,9 @@ import LoginForm from './components/session/LoginForm';
 import SignupForm from './components/session/SignupForm';
 import Header from './components/Navigation/header';
 import ProductList from './components/ProductList';
-import ProductDetail from './components/ProductDetail'; // Import the ProductDetail component
+import ProductDetail from './components/ProductDetail'; 
 import * as sessionActions from './store/session';
+import HomePage from './components/HomePage';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -27,12 +28,11 @@ function Layout() {
 
 const router = createBrowserRouter([
   {
-    path: '/',
     element: <Layout />,
     children: [
       {
-        index: true,
-        element: <h1>Home Page</h1>
+        path: '/',
+        element: <HomePage />,
       },
       {
         path: 'login',

@@ -1,0 +1,39 @@
+.secondary-nav {
+    background-color: #232f3e; 
+    color: white;
+    display: flex;
+    justify-content: space-around; 
+  }
+  
+  .secondary-nav ul {
+    list-style: none;
+    display: flex;
+    width: 100%; 
+    padding: 0;
+    margin: 0;
+    justify-content: space-around;
+  }
+  
+  .secondary-nav li {
+    flex: 1; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+  }
+  
+  .secondary-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 0;
+    display: block; 
+    text-align: center;
+  }
+  
+  .secondary-nav a:hover {
+    text-decoration: underline;
+  }
+  
+  .nav-container {
+    width: 100%;
+  }
+  

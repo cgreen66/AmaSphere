@@ -3,10 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { faAmazon } from '@fortawesome/free-brands-svg-icons';
+import { faAmazon, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { logout } from '../../store/session';
-
-
 import './Header.css';
 
 function Header() {
@@ -20,6 +18,15 @@ function Header() {
 
   return (
     <header className="header">
+      <div className="social-icons">
+        <a href="https://github.com/cgreen66" target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faGithub} className="social-icon" />
+        </a>
+        <a href="https://linkedin.com/in/christophergreenn" target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faLinkedin} className="social-icon" />
+        </a>
+      </div>
+
       <Link to="/" className="header-logo">
         <FontAwesomeIcon icon={faAmazon} size="2x" />
       </Link>
@@ -32,32 +39,29 @@ function Header() {
       </div>
 
       <div className="header-nav">
-        {/* Account Section */}
-        {!user ? (
-          <div className="header-option" onClick={() => setShowDropdown(!showDropdown)}>
-            <span className="header-optionLineOne">Hello, Sign in</span>
-            <span className="header-optionLineTwo">Account & Lists</span>
-            {showDropdown && (
-              <div className="header-dropdown">
-                <NavLink to="/login" className="header-dropdown-btn">Sign In</NavLink>
-                <NavLink to="/signup" className="header-dropdown-new">New customer? Start here.</NavLink>
-              </div>
-            )}
-          </div>
-        ) : (
+      {!user ? (
+  <div className="header-option" onClick={() => setShowDropdown(!showDropdown)}>
+    <span className="header-optionLineOne">Hello, Sign in</span>
+    <span className="header-optionLineTwo">Account & Lists</span>
+    {showDropdown && (
+      <div className="header-dropdown">
+        <NavLink to="/login" className="header-dropdown-btn">Sign In</NavLink>
+        <NavLink to="/signup" className="header-dropdown-new">New customer? Start here.</NavLink>
+      </div>
+    )}
+  </div>
+) : (
           <div className="header-option" onClick={handleLogout}>
             <span className="header-optionLineOne">Hello, {user.name}</span>
             <span className="header-optionLineTwo">Sign Out</span>
           </div>
         )}
 
-        {/* Prime Link */}
-
-
-        {/* Cart Icon */}
         <Link to="/cart" className="header-cart">
-          <FontAwesomeIcon icon={faShoppingCart} />
-          <span className="header-cartCount">0</span>
+        <div className="header-cart">
+  <FontAwesomeIcon icon={faShoppingCart} />
+  <span className="header-cartCount">0</span>
+</div>
         </Link>
       </div>
     </header>

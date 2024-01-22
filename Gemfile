@@ -19,6 +19,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "rack-cors"
 
 gem "bcrypt"
+gem "aws-sdk-s3"
 gem "jbuilder"
 
 gem "faker"
