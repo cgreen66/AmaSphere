@@ -1,0 +1,133 @@
+.cart-items-index-background {
+    display: flex;
+    justify-content: center;
+    background-color: #eaeded;
+    width: 100%;
+  }
+  
+  .cart-items-index-container {
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .cart-items-index-div-inner {
+    background-color: white;
+    padding: 30px;
+    min-height: 1500px;
+    margin-top: 30px;
+    flex-grow: 2; 
+  }
+  
+  .header {
+    font-size: 22px;
+    font-family: 'Amazon Ember Regular', Arial, sans-serif;
+    border-bottom: 1px solid #dddddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .cart-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .cart-item-image {
+    width: 120px;
+    height: 120px;
+    margin-right: 15px;
+    object-fit: cover;
+    border: 1px solid #dddddd;
+  }
+  
+  .cart-item-details {
+    flex-grow: 1;
+  }
+  
+  .text-lg {
+    font-size: 18px;
+  }
+  
+  .font-medium {
+    font-weight: 600;
+  }
+  
+  .cart-item-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .cart-item-price,
+  .cart-item-quantity,
+  .cart-item-subtotal {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .form-input {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    width: 60px;
+    margin-left: 10px;
+    font-size: 16px;
+  }
+  
+  .remove-button {
+    background-color: #c40018;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .remove-button:hover {
+    background-color: #a90015;
+  }
+  
+  .checkout-div {
+    background-color: white;
+    padding-top: 20px;
+    padding-left: 20px;
+    justify-content: left;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-left: 20px;
+    width: 270px;
+    height: 200px;
+    border: 1px solid #dddddd;
+    flex-grow: 1; 
+  }
+  
+  .subtotal-checkout {
+    font-family: 'Amazon Ember Regular', Arial, sans-serif;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .checkout-button {
+    background-color: #ffd814;
+    border-color: #a88734 #9c7e31 #846a29;
+    font-family: 'Amazon Ember Regular', Arial, sans-serif;
+    width: 250px;
+    height: 29px;
+    border: 1px solid rgb(132, 106, 41);
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  
+  .checkout-button:hover {
+    background-color: rgb(228, 184, 72);
+  }
+  
+  .checkout-button:active {
+    background-color: rgb(215, 174, 69);
+  }
+  

@@ -1,82 +1,81 @@
-/* Header structure */
+
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-around; 
+    justify-content: space-around;
     background-color: #131921;
     padding: 0 10px;
     height: 60px;
     color: #FF9900;
-  }
-  
-  .social-icons {
+}
+
+.social-icons {
     display: flex;
     align-items: center;
-    gap: 10px; 
-  }
-  
-  .social-icon {
-    color: #FF9900;
-    font-size: 24px; 
-  }
-  
+    gap: 5px; 
+}
 
-  .header-logo {
-    display: flex; 
+.social-icon {
+    color: #FF9900;
+    font-size: 18px; 
+}
+
+.header-logo {
+    display: flex;
     align-items: center;
-    margin-right: auto; 
+    margin-right: auto;
     margin-left: 10px;
-    color: #FF9900;
-  }
-  
+    font-size: 20px; 
+    color: #FF9900; 
+}
 
-  .searchBar {
+.searchBar {
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     flex-grow: 2;
     max-width: 600px;
-  }
-  
-  .inputSearch {
+}
+
+.inputSearch {
     flex-grow: 1;
     padding: 8px;
     border: none;
     border-radius: 4px 0 0 4px;
-  }
-  
-  .searchButton {
+    font-size: 14px; 
+}
+
+.searchButton {
     padding: 8px 12px;
     background-color: #febd69;
     border: none;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
-  }
-  
+    font-size: 14px;
+}
 
-  .header-nav {
+.header-nav {
     display: flex;
     align-items: center;
-    margin-left: auto; 
-  }
-  
-  .header-option {
-    position: relative; 
+    margin-left: auto;
+}
+
+.header-option {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     cursor: pointer;
     padding: 0 10px;
-  }
-  
+}
 
-  .header-optionLineOne, .header-optionLineTwo {
+.header-optionLineOne, .header-optionLineTwo {
     color: white;
-    display: block; 
-  }
-  
+    display: block;
+    font-size: 14px; 
+}
 
-  .header-dropdown {
+.header-dropdown {
     display: none;
     position: absolute;
     top: 100%;
@@ -87,93 +86,93 @@
     border-radius: 4px;
     padding: 20px;
     z-index: 5;
-    width: 350px; 
+    width: 350px;
     text-align: center;
-  }
-  
-  .header-option:hover .header-dropdown {
-    display: block; 
-  }
-  
-  .header-dropdown-btn, .header-dropdown-new {
+}
+
+.header-option:hover .header-dropdown {
+    display: block;
+}
+
+.header-dropdown-btn, .header-dropdown-new {
     padding: 8px 16px;
     border-radius: 2px;
     color: #111;
     margin: 8px 0;
     text-decoration: none;
     display: block;
-  }
-  
-  .header-dropdown-btn {
+    font-size: 14px; 
+}
+
+.header-dropdown-btn {
     background-color: #f0c14b;
     border: 1px solid #a88734;
-  }
-  
-  .header-dropdown-new {
+}
+
+.header-dropdown-new {
     background-color: transparent;
     color: #0066c0;
-  }
-  
-  .header-cart {
+}
+
+.header-cart {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    font-size: 28px; 
+    font-size: 22px; 
     color: #FF9900;
-    margin-left: 20px; 
-    margin-right: 10px; 
-  }
-  
-  .header-cartCount {
+    margin-left: 10px; 
+    margin-right: 10px;
+}
+
+.header-cartCount {
     position: absolute;
-    top: -10px;
-    right: -16px; 
+    top: -8px; 
+    right: -12px;
     background-color: #f08804;
     color: white;
     padding: 2px 6px;
     border-radius: 50%;
-    font-size: 14px; 
-    min-width: 20px; 
-    height: 20px; 
+    font-size: 12px; 
+    min-width: 18px;
+    height: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     .header {
-      flex-direction: column;
-      align-items: center;
+flex-direction: column;
+align-items: center;
     }
-  
+
     .searchBar {
-      margin-top: 10px;
-      margin-bottom: 10px;
-      width: 100%; 
+    margin-top: 5px;
+    margin-bottom: 5px; 
+    width: 100%;
     }
-  
+
     .header-nav {
-      width: 100%;
-      justify-content: space-between;
+    width: 100%;
+    justify-content: space-between;
     }
-  
+
     .header-option {
-      align-items: center;
+    align-items: center;
     }
-  
+
     .header-cart {
-      margin-top: 10px;
+    margin-top: 5px; 
     }
-  
+
     .social-icons {
-      margin-right: auto; 
-      margin-left: 10px;
+    margin-right: auto;
+    margin-left: 10px;
     }
-  
+
     .header-logo {
-      margin: 0; 
+    margin: 0;
+    font-size: 20px; 
     }
-  }
-  
+}

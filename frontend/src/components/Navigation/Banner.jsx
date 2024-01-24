@@ -37,11 +37,11 @@ function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
-        className={`${className} custom-slick-arrow`} 
-        style={{ ...style, display: "block", background: "transparent" }}
+        className={`${className} custom-slick-arrow next-arrow`}
+        style={{ ...style }}
         onClick={onClick}
       >
-        <i className="arrow-icon">›</i> 
+        <i className="arrow-icon">›</i>
       </div>
     );
   }
@@ -50,11 +50,10 @@ function SampleNextArrow(props) {
     const { className, style, onClick } = props;
     return (
       <div
-        className={`${className} custom-slick-arrow`} 
-        style={{ ...style, display: "block", background: "transparent" }}
+        className={`${className} custom-slick-arrow prev-arrow`}
+        style={{ ...style }}
         onClick={onClick}
       >
-       
         <i className="arrow-icon">‹</i>
       </div>
     );

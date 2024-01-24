@@ -1,3 +1,4 @@
+/* Update your Product.css file */
 .product {
     display: flex;
     flex-direction: column;
@@ -6,82 +7,63 @@
     overflow: hidden;
     background-color: #fff;
     transition: transform 0.3s ease;
-  }
-  
-  .product .product-details .product-detail-reviews {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Ensure alignment to the left */
-    margin: 0; /* Reset any default margins that may be applied */
-    padding: 0; /* Reset any default padding that may be applied */
-    width: 100%; /* Ensure the container spans the full width of its parent */
-  }
-  
-  .product .product-details .product-detail-reviews .product-detail-rating,
-  .product .product-details .product-detail-reviews .product-review-count {
-    margin-right: 4px; /* Consistent spacing */
-    text-align: left; /* Explicitly align text to the left */
+    margin: 10px;
+    padding: 10px;
+    flex: 0 0 calc(25% - 20px); /* Set 4 per row with margin in between */
   }
 
-  .product:hover {
+.product:hover {
     transform: scale(1.02); /* Subtle scale effect on hover */
-  }
-  
-  .product-image img {
+}
+
+.product-image img {
     width: 100%;
     height: auto;
     object-fit: contain;
-    padding: 16px; /* Match Amazon's padding around images */
-  }
-  
-  .product-details {
-    padding: 16px; /* Consistent padding with image */
-  }
-  
-  .product-title {
+}
+
+.product-details {
+    padding: 16px;
+}
+
+.product-title {
     font-size: 1rem;
-    font-weight: 700; /* Bolder font weight */
-    color: #111; /* Darker text to match Amazon's */
-    margin-bottom: 4px; /* Reduced margin */
-  }
-  
-  .product-detail-reviews {
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 4px;
+}
+
+.product-detail-reviews {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Align items to the left */
-    font-size: 0.85rem; /* Adjust font size if necessary */
-    margin-top: 4px; /* Adjust margin for alignment */
-  }
-  
-  .product-detail-rating {
-    color: #ffa41c; /* Star color */
-    margin-right: 4px; /* Space between stars and review count */
-  }
-  
-  .product-review-count {
-    color: #555; /* Text color for the review count */
-  }
-  
-  .product-brand {
-    color: #565959; /* Subdued color for brand */
-    font-size: 0.9rem; /* Smaller font size for brand */
+    justify-content: flex-start;
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+.product-detail-rating {
+    color: #ffa41c;
+    margin-right: 4px;
+}
+
+.product-review-count {
+    color: #555;
+}
+
+.product-brand {
+    color: #565959;
+    font-size: 0.9rem;
     margin-bottom: 4px;
-  }
-  
-  .product-price {
-    font-size: 1.24rem; /* Adjusted font size to match Amazon's */
+}
+
+.product-price {
+    font-size: 1.24rem;
     color: #B12704;
     font-weight: 700;
-    margin-bottom: 8px; /* More space before the price */
-  }
-  
-  /* Hide the Add to Cart button */
-  .add-to-cart-button {
-    display: none;
-  }
-  
-  .product-link {
+    margin-bottom: 8px;
+}
+
+.product-link {
     text-decoration: none;
     color: inherit;
-  }
-  
+}

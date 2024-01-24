@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import './ProductDetail.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItemToCart, updateItemQuantity, removeItemFromCart } from '../store/cartSlice';
+
 import ducati from '/Users/christopher/AmaSphere/public/images/PANIGALEV4RRSIDE_2000x.webp';
 import m1000 from '/Users/christopher/AmaSphere/public/images/2023-BMW-M1000RR-18-scaled.webp';
 import prime from '/Users/christopher/AmaSphere/public/images/Amazon_Prime_Logo.svg';
@@ -12,6 +15,9 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(ducati);
   const [hoveredImage, setHoveredImage] = useState(ducati);
+
+  const cart = useSelector((state) => state.cart || []); 
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -30,7 +36,9 @@ const ProductDetail = () => {
     fetchProduct();
   }, [productId]);
 
-  const formattedPrice = product ? parseFloat(product.price).toFixed(2) : null;
+  const totalCost = useMemo(() => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  }, [cart]);
 
   const currentDate = new Date();
   currentDate.setDate(currentDate.getDate() + 3);
@@ -42,17 +50,58 @@ const ProductDetail = () => {
   const formattedDate = `${dayName}, ${monthName} ${dayOfMonth}`;
 
   const handleThumbnailHover = (image) => {
-    setHoveredImage(image); // Update hovered image
+    setHoveredImage(image);
   };
 
   const handleThumbnailClick = (image) => {
     setSelectedImage(image);
-    setHoveredImage(image); // Update hovered image on click too
+    setHoveredImage(image);
   };
+
+  const handleAddToCart = () => {
+    const newItem = { id: product.id, name: product.name, quantity: 1, price: parseFloat(product.price) };
+    console.log('Adding item to cart:', newItem);
+    console.log('Current cart:', cart);
+    dispatch(addItemToCart(newItem));
+  };
+
+  const handleQuantityChange = (itemId, newQuantity) => {
+
+    dispatch(updateItemQuantity({ itemId, quantity: newQuantity }));
+  };
+
+  const handleRemoveFromCart = (itemId) => {
+
+    dispatch(removeItemFromCart(itemId));
+  };
+
+  const cartItems = useMemo(() => {
+    return cart.map((item) => (
+      <div key={item.id} className="cart-item">
+        <div className="cart-item-image">
+          <img src={item.image} alt={item.name} />
+        </div>
+        <div className="cart-item-details">
+          <h3>{item.name}</h3>
+          <p>Price: ${item.price.toFixed(2)}</p>
+          <label htmlFor={`quantity-${item.id}`}>Quantity:</label>
+          <input
+            type="number"
+            id={`quantity-${item.id}`}
+            value={item.quantity}
+            onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
+          />
+          <button onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
+        </div>
+      </div>
+    ));
+  }, [cart]);
 
   if (!product) {
     return <div>Loading...</div>;
   }
+
+  const formattedPrice = parseFloat(product.price).toFixed(2);
 
   return (
     <div className="product-detail-container">
@@ -69,24 +118,25 @@ const ProductDetail = () => {
         <h1 className="product-title">{product.name}</h1>
         <div className="product-rating">★★★★★</div>
         <p className="product-description">{product.description}</p>
-   
+
         <div className="purchase-box">
-        <div className="prime-logo-container">
-          <img src={prime} alt="Prime Logo" className="prime-logo" />
-        </div>
-        <p className="delivery-date">FREE delivery by {formattedDate}</p>
-        <p className="product-price">{formattedPrice} <span className="price-per-unit">($0.42 / Ounce)</span></p>
-        <div className="product-availability">In Stock</div>
-        <div className="product-actions">
-          <label htmlFor="quantity" className="quantity-label">Quantity:</label>
-          <select id="quantity" name="quantity" className="quantity-selector">
-            {[...Array(10).keys()].map(number => <option key={number} value={number + 1}>{number + 1}</option>)}
-          </select>
+          <div className="prime-logo-container">
+            <img src={prime} alt="Prime Logo" className="prime-logo" />
           </div>
-          <button className="add-to-cart-button">Add to Cart</button>
+          <p className="delivery-date">FREE delivery by {formattedDate}</p>
+          <p className="product-price">${formattedPrice} <span className="price-per-unit">($0.42 / Ounce)</span></p>
+          <div className="product-availability">In Stock</div>
+          <div className="product-actions">
+            <label htmlFor="quantity" className="quantity-label">Quantity:</label>
+            <select id="quantity" name="quantity" className="quantity-selector">
+              {[...Array(10).keys()].map(number => <option key={number} value={number + 1}>{number + 1}</option>)}
+            </select>
+          </div>
+          <button onClick={handleAddToCart} className="add-to-cart-button">Add to Cart</button>
           <button className="buy-now-button">Buy Now</button>
         </div>
       </div>
+
     </div>
   );
 };

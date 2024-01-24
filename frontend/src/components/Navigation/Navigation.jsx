@@ -8,13 +8,13 @@ function Navigation() {
 
   return (
     <nav className="navbar">
-      {/* Navigation Links */}
+
       <NavLink to="/" className="nav-link">Home</NavLink>
-      {/* Add additional NavLink components for other navigation items */}
+ 
       <NavLink to="/category1" className="nav-link">Category 1</NavLink>
       <NavLink to="/category2" className="nav-link">Category 2</NavLink>
       
-      {/* Right side - Profile or SignIn/SignUp */}
+
       <div className="nav-account">
         {sessionUser ? (
           <NavLink to="/profile" className="nav-link">Profile</NavLink> 

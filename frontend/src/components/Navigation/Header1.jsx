@@ -7,7 +7,7 @@ import { faAmazon, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-ico
 import { logout } from '../../store/session';
 import './Header.css';
 
-function Header() {
+function Header1() {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cart);
@@ -72,4 +72,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Header1;

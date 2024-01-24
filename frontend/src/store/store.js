@@ -3,6 +3,8 @@ import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import sessionReducer from './session';
 import productsReducer from './productSlice';
+import cartReducer from './cartSlice';
+import { loadState, saveState } from '../localStorage'; 
 
 const logger = createLogger({
   collapsed: true,
@@ -16,14 +18,25 @@ const configureAppStore = (preloadedState) => {
     middleware.push(logger);
   }
 
-  return configureStore({
+  const persistedState = loadState(); 
+
+  const store = configureStore({
     reducer: {
       session: sessionReducer,
       products: productsReducer,
+      cart: cartReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware),
-    preloadedState,
+    preloadedState: persistedState, 
   });
+
+  store.subscribe(() => {
+    saveState({
+      cart: store.getState().cart, 
+    });
+  });
+
+  return store;
 };
 
 export default configureAppStore;

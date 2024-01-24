@@ -8,6 +8,10 @@ import ProductList from './components/ProductList';
 import ProductDetail from './components/ProductDetail'; 
 import * as sessionActions from './store/session';
 import HomePage from './components/HomePage';
+import CartPage from './store/cartpage';
+import ThankYouPage from './store/thankyoupage';
+import Header1 from './components/Navigation/header1';
+import SecondaryNav from './components/Navigation/secondarynav';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -20,7 +24,7 @@ function Layout() {
 
   return (
     <>
-      {location.pathname !== '/login' && location.pathname !== '/signup' && <Header />}
+      {location.pathname !== '/login' && location.pathname !== '/signup' && <Header/>}
       {isLoaded && <Outlet />}
     </>
   );
@@ -49,6 +53,14 @@ const router = createBrowserRouter([
       {
         path: 'products/:productId', 
         element: <ProductDetail />
+      },
+      {
+        path: 'cart', 
+        element: <CartPage />
+      },
+      {
+        path: 'thankyou', 
+        element: <ThankYouPage />
       },
   
     ],
