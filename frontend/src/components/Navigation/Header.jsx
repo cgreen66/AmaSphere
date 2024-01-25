@@ -64,7 +64,7 @@ function Header() {
 <Link to="/cart" className="header-cart">
         <div className="header-cart">
           <FontAwesomeIcon icon={faShoppingCart} />
-          <span className="header-cartCount">{totalCartQuantity}</span> 
+          <span className="header-cartCount">{totalCartQuantity}</span> {/* Display total quantity */}
         </div>
       </Link>
       </div>

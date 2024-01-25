@@ -13,11 +13,14 @@ const Product = ({ product }) => {
       dispatch(addItemToCart({ id: product.id, name: product.name, quantity: 1, price: product.price }));
     };
   
+    const imageUrl = product.photo_urls?.[0] || ducati;
+
+
     return (
       <Link to={`/products/${product.id}`} className="product-link">
         <div className="product">
           <div className="product-image">
-            <img src={ducati} alt={product.name} />
+            <img src={imageUrl} alt={product.name} />
           </div>
           <div className="product-details">
             <h2 className="product-title">{product.name}</h2>

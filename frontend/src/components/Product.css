@@ -1,29 +1,38 @@
-/* Update your Product.css file */
+
 .product {
     display: flex;
     flex-direction: column;
-    border: 1px solid #e7e7e7; /* Lighter border color */
+    border: 1px solid #e7e7e7;
     border-radius: 4px;
     overflow: hidden;
     background-color: #fff;
     transition: transform 0.3s ease;
-    margin: 10px;
+    margin: 5px; 
     padding: 10px;
-    flex: 0 0 calc(25% - 20px); /* Set 4 per row with margin in between */
-  }
+    height: 500px; 
+    width: 350px; 
+}
 
 .product:hover {
-    transform: scale(1.02); /* Subtle scale effect on hover */
+    transform: scale(1.02); 
+}
+
+.product-image {
+    height: 250px;
+    width: 100%; 
+    overflow: hidden;
 }
 
 .product-image img {
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
 }
+
 
 .product-details {
     padding: 16px;
+    flex-grow: 1;
 }
 
 .product-title {
@@ -31,6 +40,9 @@
     font-weight: 700;
     color: #111;
     margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .product-detail-reviews {
