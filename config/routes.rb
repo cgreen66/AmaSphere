@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :users, only: :create
     resource :session, only: [:show, :create, :destroy]
     resources :products, only: [:index, :show]
+    get 'products/brand/:brand_name', to: 'products#by_brand'
   end
 
   get '*path', to: "static_pages#frontend_index"

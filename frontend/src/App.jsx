@@ -12,6 +12,7 @@ import CartPage from './store/cartpage';
 import ThankYouPage from './store/thankyoupage';
 import Header1 from './components/Navigation/header1';
 import SecondaryNav from './components/Navigation/secondarynav';
+import BrandProducts from './components/Navigation/Brandproducts';
 
 function Layout() {
   const dispatch = useDispatch();
@@ -61,6 +62,14 @@ const router = createBrowserRouter([
       {
         path: 'thankyou', 
         element: <ThankYouPage />
+      },
+      {
+        path: 'brand/:brandName',
+        element: <BrandProducts />,
+        loader: async ({ params }) => {
+          return fetch(`/api/products/brand/${params.brandName}`)
+            .then(res => res.json());
+        }
       },
   
     ],

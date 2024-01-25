@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../store/cartSlice'; 
 import './Product.css';
-import ducati from '/Users/christopher/AmaSphere/public/images/PANIGALEV4RRSIDE_2000x.webp';
+import ducati from '/Users/christopher/AmaSphere/public/images/PANIGALEV4RRSIDE_2000x-f0119f05.webp';
 
 const Product = ({ product }) => {
     const dispatch = useDispatch();

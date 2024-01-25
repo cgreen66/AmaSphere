@@ -78,20 +78,18 @@
 
 .continueButton {
   width: 100%;
-  background-color: #f0c14b;
-  border-color: #a88734 #9c7e31 #846a29;
-  border-radius: 3px;
-  border-style: solid;
-  border-width: 1px;
-  color: #111;
-  height: 31px; 
-  margin-bottom: 16px;
+  padding: 10px; 
+  background-color: #FFD814;
+  color: #464646;
+  font-weight: 400;
+  border-radius: 10px;
   cursor: pointer;
-  font-size: 13px; 
+  margin-bottom: 10px;
+  border: none;
 }
 
 .continueButton:hover {
-  background-color: #f3d078;
+  background-color: #f8d318; 
 }
 
 .footerText {

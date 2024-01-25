@@ -2,10 +2,8 @@ import React from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import BMW from '/Users/christopher/AmaSphere/public/images/Logo_BMW_Motorrad_2021.svg.png';
-import Ducati from '/Users/christopher/AmaSphere/public/images/Ducati-logo.png';
-import mv from '/Users/christopher/AmaSphere/public/images/MV-Agusta-Logo.jpg';
-import yamaha from '/Users/christopher/AmaSphere/public/images/yamaha-logo-vector-automobile-260nw-2373910461.webp';
+import BMW from '/Users/christopher/AmaSphere/public/images/Logo_BMW_Motorrad_2021.svg-e80a2eeb.png';
+import Ducati from '/Users/christopher/AmaSphere/public/images/Ducati-logo-d357ffef.png';
 import './Banner.css'
 
 const Banner = () => {

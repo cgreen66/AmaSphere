@@ -11,6 +11,12 @@ class Api::ProductsController < ApplicationController
     render json: product_with_photo_urls(@product)
   end
 
+  def by_brand
+    brand_name = params[:brand_name].downcase
+    @products = Product.includes(photos_attachments: :blob).where('lower(brand) = ?', brand_name)
+    render json: @products.map { |product| product_with_photo_urls(product) }
+  end
+
   private
 
   def product_with_photo_urls(product)
