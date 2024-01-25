@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateItemQuantity, removeItemFromCart } from './cartSlice';
 import './CartPage.css';
-import ducati from '/Users/christopher/AmaSphere/public/images/PANIGALEV4RRSIDE_2000x-f0119f05.webp';
 import { Link } from 'react-router-dom';
 
 const CartPage = () => {

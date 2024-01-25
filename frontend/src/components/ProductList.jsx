@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../store/productSlice';
 import './ProductList.css'; 
-import ducati from '/Users/christopher/AmaSphere/public/images/PANIGALEV4RRSIDE_2000x-f0119f05.webp';
 import Product from './product';
 
 

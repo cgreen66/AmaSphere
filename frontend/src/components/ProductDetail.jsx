@@ -4,17 +4,11 @@ import './ProductDetail.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart, updateItemQuantity, removeItemFromCart } from '../store/cartSlice';
 
-import ducati from '/Users/christopher/AmaSphere/public/images/PANIGALEV4RRSIDE_2000x-f0119f05.webp';
-import m1000 from '/Users/christopher/AmaSphere/public/images/2023-BMW-M1000RR-18-scaled-4b8fe47a.webp';
-import prime from '/Users/christopher/AmaSphere/public/images/Amazon_Prime_Logo-27d442d6.svg';
-import h2r from '/Users/christopher/AmaSphere/public/images/Z6SHRDJOCZHA3JVBJS2TGBYIIY-37c776d1.avif';
-import r1m from '/Users/christopher/AmaSphere/public/images/3f8469b3-5cd7-4e22-9002-aa052bed074c-4705587e.png';
-
 const ProductDetail = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(ducati);
-  const [hoveredImage, setHoveredImage] = useState(ducati);
+  const [selectedImage, setSelectedImage] = useState('https://amasphere-seeds1.s3.amazonaws.com/MY-21-Superleggera-V4-01-Model-Blocks-630x390-v03.png');
+  const [hoveredImage, setHoveredImage] = useState('https://amasphere-seeds1.s3.amazonaws.com/MY-21-Superleggera-V4-01-Model-Blocks-630x390-v03.png');
 
   const cart = useSelector((state) => state.cart || []); 
   const dispatch = useDispatch();
@@ -60,68 +54,55 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     const newItem = { id: product.id, name: product.name, quantity: 1, price: parseFloat(product.price), photo_urls: product.photo_urls };
-    console.log('Adding item to cart:', newItem);
-    console.log('Current cart:', cart);
     dispatch(addItemToCart(newItem));
   };
 
   const handleQuantityChange = (itemId, newQuantity) => {
-
     dispatch(updateItemQuantity({ itemId, quantity: newQuantity }));
   };
 
   const handleRemoveFromCart = (itemId) => {
-
     dispatch(removeItemFromCart(itemId));
   };
 
-  const cartItems = useMemo(() => {
-    return cart.map((item) => (
-      <div key={item.id} className="cart-item">
-        <div className="cart-item-image">
-          <img src={item.image} alt={item.name} />
-        </div>
-        <div className="cart-item-details">
-          <h3>{item.name}</h3>
-          <p>Price: ${item.price.toFixed(2)}</p>
-          <label htmlFor={`quantity-${item.id}`}>Quantity:</label>
-          <input
-            type="number"
-            id={`quantity-${item.id}`}
-            value={item.quantity}
-            onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
-          />
-          <button onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
-        </div>
-      </div>
-    ));
-  }, [cart]);
-
-  if (!product) {
-    return <div>Loading...</div>;
-  }
-
-  const formattedPrice = parseFloat(product.price).toFixed(2);
+  const formattedPrice = product ? parseFloat(product.price).toFixed(2) : '';
 
   return (
     <div className="product-detail-container">
       <div className="thumbnail-carousel">
-        <img src={ducati} alt="Thumbnail of Ducati" onMouseEnter={() => handleThumbnailHover(ducati)} onClick={() => handleThumbnailClick(ducati)} className="thumbnail-image" />
-        <img src={m1000} alt="Thumbnail of M1000" onMouseEnter={() => handleThumbnailHover(m1000)} onClick={() => handleThumbnailClick(m1000)} className="thumbnail-image" />
-        <img src={h2r} alt="Thumbnail of H2R" onMouseEnter={() => handleThumbnailHover(h2r)} onClick={() => handleThumbnailClick(h2r)} className="thumbnail-image" />
-        <img src={r1m} alt="Thumbnail of R1M" onMouseEnter={() => handleThumbnailHover(r1m)} onClick={() => handleThumbnailClick(r1m)} className="thumbnail-image" />
+        <img 
+          src='https://amasphere-seeds1.s3.amazonaws.com/MY-21-Superleggera-V4-01-Model-Blocks-630x390-v03.png' 
+          alt="Thumbnail 1" 
+          onMouseEnter={() => handleThumbnailHover('https://amasphere-seeds1.s3.amazonaws.com/MY-21-Superleggera-V4-01-Model-Blocks-630x390-v03.png')} 
+          onClick={() => handleThumbnailClick('https://amasphere-seeds1.s3.amazonaws.com/MY-21-Superleggera-V4-01-Model-Blocks-630x390-v03.png')} 
+          className="thumbnail-image" 
+        />
+            <img 
+          src='https://amasphere-seeds1.s3.amazonaws.com/2023-BMW-M1000RR-18-scaled.webp' 
+          alt="Thumbnail 2" 
+          onMouseEnter={() => handleThumbnailHover('https://amasphere-seeds1.s3.amazonaws.com/2023-BMW-M1000RR-18-scaled.webp')} 
+          onClick={() => handleThumbnailClick('https://amasphere-seeds1.s3.amazonaws.com/2023-BMW-M1000RR-18-scaled.webp')} 
+          className="thumbnail-image" 
+        />
+              <img 
+          src='https://amasphere-seeds1.s3.amazonaws.com/Z6SHRDJOCZHA3JVBJS2TGBYIIY.avif' 
+          alt="Thumbnail 3" 
+          onMouseEnter={() => handleThumbnailHover('https://amasphere-seeds1.s3.amazonaws.com/Z6SHRDJOCZHA3JVBJS2TGBYIIY.avif')} 
+          onClick={() => handleThumbnailClick('https://amasphere-seeds1.s3.amazonaws.com/Z6SHRDJOCZHA3JVBJS2TGBYIIY.avif')} 
+          className="thumbnail-image" 
+        />
       </div>
       <div className="product-detail-main">
-        <img src={hoveredImage} alt={product.name} className="product-main-image" />
+        <img src={hoveredImage} alt={product ? product.name : 'Product'} className="product-main-image" />
       </div>
       <div className="product-detail-info">
-        <h1 className="product-title">{product.name}</h1>
+        <h1 className="product-title">{product ? product.name : ''}</h1>
         <div className="product-rating">★★★★★</div>
-        <p className="product-description">{product.description}</p>
-
+        <p className="product-description">{product ? product.description : ''}</p>
+  
         <div className="purchase-box">
           <div className="prime-logo-container">
-            <img src={prime} alt="Prime Logo" className="prime-logo" />
+            <img src='https://amasphere-seeds1.s3.amazonaws.com/Amazon_Prime_Logo.svg' alt="Prime Logo" className="prime-logo" />
           </div>
           <p className="delivery-date">FREE delivery by {formattedDate}</p>
           <p className="product-price">${formattedPrice} <span className="price-per-unit">($0.42 / Ounce)</span></p>
@@ -136,9 +117,9 @@ const ProductDetail = () => {
           <button className="buy-now-button">Buy Now</button>
         </div>
       </div>
-
     </div>
   );
+  
 };
 
 export default ProductDetail;

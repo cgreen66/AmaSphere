@@ -2,8 +2,6 @@ import React from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import BMW from '/Users/christopher/AmaSphere/public/images/Logo_BMW_Motorrad_2021.svg-e80a2eeb.png';
-import Ducati from '/Users/christopher/AmaSphere/public/images/Ducati-logo-d357ffef.png';
 import './Banner.css'
 
 const Banner = () => {
@@ -22,10 +20,10 @@ const Banner = () => {
       <Slider {...settings}>
         <div>
           {/* Use the imported images here */}
-          <img src={Ducati} alt="Ducati" />
+          <img src='https://amasphere-seeds1.s3.amazonaws.com/Screenshot+2024-01-22+at+10.22.02+AM.png' alt="Ducati" />
         </div>
         <div>
-          <img src={BMW} alt="BMW Motorrad" />
+          <img src='https://amasphere-seeds1.s3.amazonaws.com/Logo_BMW_Motorrad_2021.svg.png' alt="BMW Motorrad" />
         </div>
         {/* <div>
           <img src={yamaha} alt="Yamaha" />
