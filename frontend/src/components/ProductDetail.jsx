@@ -59,7 +59,7 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = () => {
-    const newItem = { id: product.id, name: product.name, quantity: 1, price: parseFloat(product.price) };
+    const newItem = { id: product.id, name: product.name, quantity: 1, price: parseFloat(product.price), photo_urls: product.photo_urls };
     console.log('Adding item to cart:', newItem);
     console.log('Current cart:', cart);
     dispatch(addItemToCart(newItem));

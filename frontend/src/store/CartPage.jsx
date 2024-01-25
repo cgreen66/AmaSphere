@@ -36,7 +36,11 @@ const CartPage = () => {
             <div>
               {cartItems.map((item) => (
                 <div key={item.id} className="cart-item">
-                  <img src={ducati} alt={item.name} className="cart-item-image" />
+                  <img 
+                    src={item.photo_urls?.[0] || ducati} 
+                    alt={item.name} 
+                    className="cart-item-image" 
+                  />
                   <div className="cart-item-details">
                     <h3 className="text-lg font-medium">{item.name}</h3>
                     <div className="cart-item-info">
@@ -54,7 +58,6 @@ const CartPage = () => {
                           className="form-input"
                         />
                       </div>
-
                     </div>
                     <button className="remove-button" onClick={() => handleRemoveItem(item.id)}>
                       Remove
@@ -78,6 +81,6 @@ const CartPage = () => {
       </div>
     </div>
   );
-}
+                        }  
 
 export default CartPage;

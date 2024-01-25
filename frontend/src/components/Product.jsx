@@ -10,7 +10,7 @@ const Product = ({ product }) => {
     const formattedPrice = parseFloat(product.price).toFixed(2);
   
     const handleAddToCart = () => {
-      dispatch(addItemToCart({ id: product.id, name: product.name, quantity: 1, price: product.price }));
+      dispatch(addItemToCart({ id: product.id, name: product.name, quantity: 1, price: product.price, photo_urls: product.photo_urls }));
     };
   
     const imageUrl = product.photo_urls?.[0] || ducati;
