@@ -18,71 +18,97 @@ AmaSphere leverages a range of cutting-edge technologies for a full-stack experi
 AmaSphere's product page allows users to browse through a diverse range of products, each showcased with detailed descriptions and high-resolution images hosted on AWS S3.
 
 ```javascript
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Product.css';
+const Product = ({ product }) => {
+    const dispatch = useDispatch();
+    const formattedPrice = parseFloat(product.price).toFixed(2);
+  
+    const handleAddToCart = () => {
+      dispatch(addItemToCart({ id: product.id, name: product.name, quantity: 1, price: product.price, photo_urls: product.photo_urls }));
+    };
+  
+    const imageUrl = product.photo_urls?.[0] || ducati;
 
-const Product = ({ product }) => (
-  <Link to={`/products/${product.id}`} className="product-link">
-    <div className="product">
-      <img src={product.image_url} alt={product.name} className="product-image" />
-      <div className="product-details">
-        <h2 className="product-title">{product.name}</h2>
-        <p className="product-price">${product.price}</p>
-      </div>
-    </div>
-  </Link>
-);
 
-export default Product;
+    return (
+      <Link to={`/products/${product.id}`} className="product-link">
+        <div className="product">
+          <div className="product-image">
+            <img src={imageUrl} alt={product.name} />
+          </div>
+          <div className="product-details">
+            <h2 className="product-title">{product.name}</h2>
+            <div className="product-detail-reviews">
+              <span className="product-detail-rating">⭐⭐⭐⭐⭐</span> 
+              <span className="product-review-count">100 reviews</span>
+            </div>
+            <p className="product-brand">{product.brand}</p>
+            <div className="product-price">${formattedPrice}</div>
+            <div className="product-rating"></div>
+          </div>
+        </div>
+      </Link>
+    );
+  };
 ```
 
 ## Dynamic Shopping Cart
 The shopping cart on AmaSphere provides a dynamic user experience, where users can add, update, and remove items seamlessly.
 
 ```javascript
-const CartPage = ({ cartItems }) => {
-  const dispatch = useDispatch();
+const cartSlice = createSlice({
+  name: 'cart',
+  initialState: [],
+  reducers: {
+    addItemToCart: (state, action) => {
+      const newItem = action.payload;
 
-  const handleUpdateQuantity = (itemId, quantity) => {
-    dispatch(updateItemQuantity({ itemId, quantity }));
-  };
-
-  const handleRemoveItem = (itemId) => {
-    dispatch(removeItemFromCart(itemId));
-  };
-
-  return cartItems.map(item => (
-    <div className="cart-item" key={item.id}>
-      <h3>{item.name}</h3>
-      <p>Price: ${item.price}</p>
-      <input type="number" value={item.quantity} onChange={(e) => handleUpdateQuantity(item.id, e.target.value)} />
-      <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
-    </div>
-  ));
-};
-
-export default CartPage;
+      const existingItem = state.find((item) => item.id === newItem.id);
+      if (existingItem) {
+        existingItem.quantity += newItem.quantity;
+      } else {
+        state.push(newItem);
+      }
+    },
+    removeItemFromCart: (state, action) => {
+      const itemId = action.payload;
+      const itemIndex = state.findIndex((item) => item.id === itemId);
+      if (itemIndex !== -1) {
+        state.splice(itemIndex, 1);
+      }
+    },
+    updateItemQuantity: (state, action) => {
+      const { itemId, quantity } = action.payload;
+      const item = state.find((item) => item.id === itemId);
+      if (item) {
+        item.quantity = quantity;
+      }
+    },
+  },
+});
 ```
 
 ## User Authentication
 Secure and efficient user authentication is a hallmark of AmaSphere, ensuring a safe and personalized shopping experience for each user.
 
 ```ruby
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
+  wrap_parameters include: User.attribute_names + ['password']
+
   def create
     @user = User.new(user_params)
+    
     if @user.save
-      login(@user)
-      render "api/users/show"
+      login!(@user)
+      render :show
     else
-      render json: @user.errors.full_messages, status: 422
+      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   private
+
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:name, :email, :password)
   end
 end
 ```
@@ -91,30 +117,40 @@ end
 AmaSphere offers an organized brand categorization feature, enabling users to browse products based on specific brands.
 
 ```javascript
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import Product from './Product';
-import './BrandProducts.css';
-
 const BrandProducts = () => {
   const [products, setProducts] = useState([]);
-  const { brandName } = useParams();
+  const { brandName } = useParams(); 
 
   useEffect(() => {
-    fetch(`/api/products/brand/${brandName}`)
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.error('Error fetching products:', error));
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(`/api/products/brand/${brandName}`);
+        if (response.ok) {
+          const data = await response.json();
+          setProducts(data);
+        } else {
+          console.error('Failed to fetch products');
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
   }, [brandName]);
 
+  if (products.length === 0) {
+    return <div>No products found for {brandName}.</div>;
+  }
+
   return (
-    <div className="brand-products-container">
-      {products.map(product => <Product key={product.id} product={product} />)}
+    <div className="products-container">
+      {products.map(product => (
+        <Product key={product.id} product={product} />
+      ))}
     </div>
   );
 };
-
-export default BrandProducts;
 ```
 
 ## Future Directions
