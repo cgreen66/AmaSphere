@@ -1,4 +1,6 @@
-# AmaSphere: An Amazon Clone with Enhanced Features [Live Link](https://amasphere.onrender.com/)
+# AmaSphere: An Amazon Clone with Enhanced Features 
+
+[Live Link](https://amasphere.onrender.com/)
 
 
 ## Introduction
