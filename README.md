@@ -20,6 +20,8 @@ AmaSphere leverages a range of cutting-edge technologies for a full-stack experi
 ### Product Catalog and Browsing
 AmaSphere's product page allows users to browse through a diverse range of products, each showcased with detailed descriptions and high-resolution images hosted on AWS S3.
 
+![Alt Text](https://amasphere-seeds1.s3.amazonaws.com/Screenshot+2024-01-26+at+12.41.30+PM.png)
+
 ```javascript
 const Product = ({ product }) => {
     const dispatch = useDispatch();
