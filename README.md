@@ -97,7 +97,7 @@ const cartSlice = createSlice({
 ## User Authentication
 Secure and efficient user authentication is a hallmark of AmaSphere, ensuring a safe and personalized shopping experience for each user.
 
-![Alt Text]([https://amasphere-seeds1.s3.amazonaws.com/Screenshot+2024-01-26+at+12.49.59+PM.png](https://amasphere-seeds1.s3.amazonaws.com/Screenshot+2024-01-26+at+12.51.11+PM.png))
+![Alt Text](https://amasphere-seeds1.s3.amazonaws.com/Screenshot+2024-01-26+at+12.51.11+PM.png)
 
 ```ruby
 class Api::UsersController < ApplicationController
