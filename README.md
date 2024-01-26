@@ -2,6 +2,8 @@
 
 [Live Link](https://amasphere.onrender.com/)
 
+![Alt Text](https://amasphere-seeds1.s3.amazonaws.com/Screenshot+2024-01-26+at+12.49.59+PM.png)
+
 
 ## Introduction
 Welcome to AmaSphere, a sophisticated clone of the well-known Amazon website. AmaSphere offers a seamless online shopping experience with an intuitive interface, robust product catalog, efficient user authentication, and a fully functional shopping cart.
