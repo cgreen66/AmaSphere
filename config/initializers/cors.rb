@@ -17,11 +17,11 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
     allow do
-      origins 'http://localhost:5173'  # Specify the domain of your frontend app
+      origins 'https://amasphere.onrender.com'  # Specify the domain of your frontend app
       resource '*',  # Paths that should be accessible
         headers: :any,
         methods: [:get, :post, :put, :patch, :delete, :options, :head],
-        credentials: true  # Include this if your frontend sends cookies or auth headers
+        credentials: false  # Include this if your frontend sends cookies or auth headers
     end
   end
   
