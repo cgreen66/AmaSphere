@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateItemQuantity, removeItemFromCart } from './cartSlice';
 import './CartPage.css';
 import { Link } from 'react-router-dom';
+import { resetCart } from './cartSlice';
 
 const CartPage = () => {
   const cartItems = useSelector((state) => state.cart || []);
@@ -17,6 +18,7 @@ const CartPage = () => {
   };
 
   const handleCheckout = () => {
+    dispatch(resetCart());
     console.log('Checkout button clicked');
   };
 

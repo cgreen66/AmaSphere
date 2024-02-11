@@ -29,8 +29,11 @@ const cartSlice = createSlice({
         item.quantity = quantity;
       }
     },
+    resetCart: () => {
+      return []; // Resets the state to an empty array
+    },
   },
 });
 
-export const { addItemToCart, removeItemFromCart, updateItemQuantity } = cartSlice.actions;
+export const { addItemToCart, removeItemFromCart, updateItemQuantity, resetCart } = cartSlice.actions;
 export default cartSlice.reducer;
