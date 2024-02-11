@@ -1,20 +1,27 @@
+// /src/localStorage.js
+
 export const loadState = () => {
-    try {
-      const serializedState = localStorage.getItem('cart');
-      if (serializedState === null) {
-        return undefined; 
-      }
-      return JSON.parse(serializedState);
-    } catch (err) {
+  try {
+    const serializedState = localStorage.getItem('state');
+    if (serializedState === null) {
       return undefined;
     }
-  };
-  
-  export const saveState = (state) => {
-    try {
-      const serializedState = JSON.stringify(state);
-      localStorage.setItem('cart', serializedState);
-    } catch {
-      // Ignore write errors d
-    }
-  };
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+// /src/localStorage.js
+
+export const saveState = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
+  } catch (err) {
+    // Ignore write errors or log them as needed
+  }
+
+};
+
+

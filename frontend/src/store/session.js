@@ -1,4 +1,7 @@
 import { csrfFetch } from './csrf';
+import { setCartItems, resetCart } from './cartSlice';
+import { loadState } from '../localStorage';
+
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
@@ -17,21 +20,33 @@ export const storeCSRFToken = response => {
   if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
 };
 
-export const restoreSession = () => async dispatch => {
+export const restoreSession = () => async (dispatch) => {
   const response = await csrfFetch("/api/session");
-  storeCSRFToken(response);
   const data = await response.json();
   dispatch(setUser(data.user));
+
+  // Similar logic as login
+  const persistedState = loadState();
+  if (persistedState && persistedState.cart) {
+    dispatch(setCartItems(persistedState.cart));
+  }
+
   return response;
 };
-
-export const login = ({ credential, password }) => async dispatch => {
+export const login = ({ credential, password }) => async (dispatch) => {
   const response = await csrfFetch("/api/session", {
     method: "POST",
     body: JSON.stringify({ credential, password })
   });
   const data = await response.json();
   dispatch(setUser(data.user));
+
+  // Load cart from local storage upon login
+  const persistedState = loadState();
+  if (persistedState && persistedState.cart) {
+    dispatch(setCartItems(persistedState.cart));
+  }
+
   return response;
 };
 
@@ -55,6 +70,11 @@ export const logout = () => async (dispatch) => {
     method: "DELETE"
   });
   dispatch(removeUser());
+  dispatch(resetCart()); 
+  
+  // Optionally clear the Redux cart state
+  // dispatch(resetCart());
+
   return response;
 };
 

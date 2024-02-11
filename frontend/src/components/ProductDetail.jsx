@@ -12,6 +12,10 @@ const ProductDetail = () => {
 
   const cart = useSelector((state) => state.cart || []); 
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.session.user);
+  const [errorMessage, setErrorMessage] = useState("");
+
+
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -53,10 +57,15 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = () => {
+    if (!user) {
+      setErrorMessage("Please log in to add items to the cart.");
+      return;
+    }
+    setErrorMessage(""); // Clear any existing error message
     const newItem = { id: product.id, name: product.name, quantity: 1, price: parseFloat(product.price), photo_urls: product.photo_urls };
     dispatch(addItemToCart(newItem));
   };
-
+  
   const handleQuantityChange = (itemId, newQuantity) => {
     dispatch(updateItemQuantity({ itemId, quantity: newQuantity }));
   };
@@ -91,6 +100,7 @@ const ProductDetail = () => {
           onClick={() => handleThumbnailClick('https://amasphere-seeds1.s3.amazonaws.com/Z6SHRDJOCZHA3JVBJS2TGBYIIY.avif')} 
           className="thumbnail-image" 
         />
+        
       </div>
       <div className="product-detail-main">
         <img src={hoveredImage} alt={product ? product.name : 'Product'} className="product-main-image" />
@@ -113,6 +123,8 @@ const ProductDetail = () => {
               {[...Array(10).keys()].map(number => <option key={number} value={number + 1}>{number + 1}</option>)}
             </select>
           </div>
+          {errorMessage && <div className="error-message">{errorMessage}</div>}
+
           <button onClick={handleAddToCart} className="add-to-cart-button">Add to Cart</button>
           <button className="buy-now-button">Buy Now</button>
         </div>
