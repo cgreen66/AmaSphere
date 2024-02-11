@@ -23,9 +23,14 @@ function Layout() {
     dispatch(sessionActions.restoreSession()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
+  const isBrandPage = location.pathname.startsWith('/brand/');
+
+
+
   return (
     <>
       {location.pathname !== '/login' && location.pathname !== '/signup' && <Header/>}
+      {isBrandPage && <SecondaryNav />}
       {isLoaded && <Outlet />}
     </>
   );
@@ -72,7 +77,7 @@ const router = createBrowserRouter([
         }
       },
   
-      
+
     ],
   },
 ]);

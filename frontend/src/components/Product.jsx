@@ -13,6 +13,10 @@ const Product = ({ product }) => {
     };
   
     const imageUrl = product.photo_urls?.[0] || ducati;
+    const randomNumber = Math.floor(Math.random() * (249 - 27 + 1)) + 27;
+    const textxx = `${randomNumber} reviews`;
+    const random = Math.random();
+    const rating = random < 0.2 ? '⭐⭐⭐⭐' : '⭐⭐⭐⭐⭐';
 
 
     return (
@@ -24,8 +28,8 @@ const Product = ({ product }) => {
           <div className="product-details">
             <h2 className="product-title">{product.name}</h2>
             <div className="product-detail-reviews">
-              <span className="product-detail-rating">⭐⭐⭐⭐⭐</span> 
-              <span className="product-review-count">100 reviews</span>
+              <span className="product-detail-rating">{rating}</span> 
+              <span className="product-review-count">{textxx}</span>
             </div>
             <p className="product-brand">{product.brand}</p>
             <div className="product-price">${formattedPrice}</div>
