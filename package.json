@@ -2,6 +2,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
+    "lodash": "^4.17.21",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1"
   }

@@ -33,22 +33,27 @@ export const restoreSession = () => async (dispatch) => {
 
   return response;
 };
-export const login = ({ credential, password }) => async (dispatch) => {
+// In your session actions where you handle login
+// src/store/sessionActions.js
+
+export const login = (userCredentials) => async (dispatch) => {
   const response = await csrfFetch("/api/session", {
     method: "POST",
-    body: JSON.stringify({ credential, password })
+    body: JSON.stringify(userCredentials)
   });
-  const data = await response.json();
-  dispatch(setUser(data.user));
 
-  // Load cart from local storage upon login
-  const persistedState = loadState();
-  if (persistedState && persistedState.cart) {
-    dispatch(setCartItems(persistedState.cart));
+  if (response.ok) {
+    const { user } = await response.json();
+    dispatch(setUser(user));
+
+    // Load cart from local storage and update the Redux store
+    const persistedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    dispatch(setCartItems(persistedCart));
   }
-
   return response;
 };
+
+
 
 export const signup = (user) => async (dispatch) => {
   const { name, email, password } = user;
@@ -65,18 +70,21 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
+// In your session actions where you handle logout
 export const logout = () => async (dispatch) => {
   const response = await csrfFetch("/api/session", {
     method: "DELETE"
   });
   dispatch(removeUser());
-  dispatch(resetCart()); 
-  
-  // Optionally clear the Redux cart state
-  // dispatch(resetCart());
 
+  // Save current cart to localStorage before resetting
+  const currentCart = store.getState().cart;
+  localStorage.setItem('cart', JSON.stringify(currentCart));
+
+  dispatch(resetCart());
   return response;
 };
+
 
 const initialState = { user: null };
 

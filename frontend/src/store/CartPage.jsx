@@ -1,16 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateItemQuantity, removeItemFromCart } from './cartSlice';
+import { updateItemQuantity, removeItemFromCart, resetCart } from './cartSlice'; // Assuming these actions are correctly defined in your cartSlice
 import './CartPage.css';
 import { Link } from 'react-router-dom';
-import { resetCart } from './cartSlice';
 
 const CartPage = () => {
   const cartItems = useSelector((state) => state.cart || []);
   const dispatch = useDispatch();
 
   const handleUpdateQuantity = (itemId, newQuantity) => {
-    dispatch(updateItemQuantity({ itemId, quantity: newQuantity }));
+    dispatch(updateItemQuantity({ itemId, quantity: parseInt(newQuantity, 10) }));
   };
 
   const handleRemoveItem = (itemId) => {
@@ -19,11 +18,13 @@ const CartPage = () => {
 
   const handleCheckout = () => {
     dispatch(resetCart());
-    console.log('Checkout button clicked');
+    // Redirect to thank you page or display a message
   };
 
   const totalCost = cartItems.reduce((total, item) => {
-    return total + item.price * item.quantity;
+    // Ensure item.price is defined and is a number before calling toFixed
+    const itemPrice = item.price && !isNaN(item.price) ? item.price : 0;
+    return total + itemPrice * item.quantity;
   }, 0);
 
   return (
@@ -38,7 +39,7 @@ const CartPage = () => {
               {cartItems.map((item) => (
                 <div key={item.id} className="cart-item">
                   <img 
-                    src={item.photo_urls?.[0] || ducati} 
+                    src={item.photo_urls?.[0] || 'https://amasphere-seeds1.s3.amazonaws.com/2023-BMW-M1000RR-18-scaled.webp'} 
                     alt={item.name} 
                     className="cart-item-image" 
                   />

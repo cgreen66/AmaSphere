@@ -1,24 +1,27 @@
+// src/store/store.js
+
 import { configureStore } from '@reduxjs/toolkit';
-import thunk from 'redux-thunk';
-import { createLogger } from 'redux-logger';
-import sessionReducer from './session';
-import productsReducer from './productSlice';
-import cartReducer from './cartSlice';
-import { loadState, saveState } from '../localStorage'; 
+import sessionReducer from './session'; // Adjust the import path as necessary
+import productsReducer from './productSlice'; // Adjust the import path as necessary
+import cartReducer from './cartSlice'; // Adjust the import path as necessary
+import { loadState, saveState } from '../localStorage'; // Adjust the import path as necessary
+import throttle from 'lodash/throttle';
 
-const logger = createLogger({
-  collapsed: true,
-  duration: true,
-});
+const saveCartState = state => {
+  saveState({
+    cart: state.cart,
+  });
+};
 
-const configureAppStore = (preloadedState) => {
-  const middleware = [thunk];
+const preloadedState = loadState();
 
-  if (import.meta.env.MODE !== 'production') {
-    middleware.push(logger);
+const setupStore = async () => {
+  const middlewares = [];
+
+  if (process.env.NODE_ENV === 'development') {
+    const { default: logger } = await import('redux-logger');
+    middlewares.push(logger);
   }
-
-  const persistedState = loadState(); 
 
   const store = configureStore({
     reducer: {
@@ -26,17 +29,19 @@ const configureAppStore = (preloadedState) => {
       products: productsReducer,
       cart: cartReducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware),
-    preloadedState: persistedState, 
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middlewares),
+    preloadedState,
   });
 
-  store.subscribe(() => {
-    saveState({
-      cart: store.getState().cart, 
-    });
-  });
+  store.subscribe(throttle(() => {
+    saveCartState(store.getState());
+}, 1000));
 
   return store;
 };
 
-export default configureAppStore;
+// Since setupStore is asynchronous, you may need to adjust how you export and use the store.
+// One approach is to export a promise and await it where you need the store.
+const storePromise = setupStore();
+
+export default storePromise;
