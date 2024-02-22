@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
   rescue_from ActionController::InvalidAuthenticityToken,
     with: :invalid_authenticity_token
 
-    protect_from_forgery with: :null_session
+    protect_from_forgery with: :exception
 
   before_action :snake_case_params, :attach_authenticity_token
 
