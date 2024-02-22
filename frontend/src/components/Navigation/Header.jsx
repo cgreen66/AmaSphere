@@ -61,6 +61,7 @@ function Header() {
           </div>
         )}
 
+
 <Link to="/cart" className="header-cart">
         <div className="header-cart">
           <FontAwesomeIcon icon={faShoppingCart} />
