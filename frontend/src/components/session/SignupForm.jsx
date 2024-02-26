@@ -61,7 +61,7 @@ function SignupForm() {
         <h2 className={styles.formTitle}>Create account</h2>
         <ul className={styles.errorList}>
           
-          {errors.map((error) => <li key={error} className={styles.errorItem}>{error}</li>)}
+          {errors.map((error) => <li key={error} className={styles.errorItem}>{error.message}</li>)}
           
         </ul>
         

@@ -37,7 +37,7 @@ function LoginForm() {
         <h1 className={styles.formTitle}>Sign In</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
           <ul className={styles.errorList}>
-            {errors.map((error) => <li key={error}>{error}</li>)}
+            {errors.map((error) => <li key={error}>{error.message}</li>)}
           </ul>
           <div className={styles.inputContainer}>
             <label className={styles.label}>
