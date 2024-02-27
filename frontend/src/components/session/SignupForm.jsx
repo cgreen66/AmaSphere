@@ -20,7 +20,6 @@ function SignupForm() {
   const handleDemoLogin = (e) => {
     e.preventDefault();
     const demoUser = { credential: 'demo@user.io', password: 'password' };
-    console.log("Demo user object:", demoUser);
 
     dispatch(sessionActions.login(demoUser))
       .catch(async (res) => {
